@@ -4,7 +4,7 @@ export const SITE = {
   title: "Adya Labs",
   author: "Adya Naufal Fikri",
   desc: "A small, independent lab where Adya experiments with ideas and turns the promising ones into products.",
-  email: "adyanaufalf@gmail.com",
+  email: "me@adyanf.com",
 };
 
 export type Social = {
