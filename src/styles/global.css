@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Colour tokens copied from blog.adyanf.com (AstroPaper) so both sites match. */
+:root,
+html[data-theme="light"] {
+  --fill: 251 254 251;
+  --text-base: 40 39 40;
+  --accent: 0 108 172;
+  --card: 230 230 230;
+  --card-muted: 205 205 205;
+  --border: 236 233 233;
+}
+
+html[data-theme="dark"] {
+  --fill: 33 39 55;
+  --text-base: 234 237 243;
+  --accent: 255 107 1;
+  --card: 52 63 96;
+  --card-muted: 138 51 2;
+  --border: 171 75 8;
+}
+
+@theme inline {
+  --color-skin-fill: rgb(var(--fill));
+  --color-skin-base: rgb(var(--text-base));
+  --color-skin-accent: rgb(var(--accent));
+  --color-skin-card: rgb(var(--card));
+  --color-skin-card-muted: rgb(var(--card-muted));
+  --color-skin-line: rgb(var(--border));
+
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --breakpoint-*: initial;
+  --breakpoint-sm: 640px;
+}
+
+@layer base {
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    @apply flex min-h-svh flex-col bg-skin-fill font-mono text-skin-base selection:bg-skin-accent/70 selection:text-skin-fill;
+  }
+
+  section,
+  footer {
+    @apply mx-auto w-full max-w-3xl px-4;
+  }
+
+  a {
+    @apply outline-offset-1 outline-skin-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  svg {
+    @apply inline-block h-6 w-6 fill-skin-base group-hover:fill-skin-accent;
+  }
+
+  svg.icon-tabler {
+    @apply inline-block h-6 w-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110;
+  }
+
+  #sun-svg,
+  html[data-theme="dark"] #moon-svg {
+    display: none;
+  }
+
+  #moon-svg,
+  html[data-theme="dark"] #sun-svg {
+    display: block;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-skin-fill;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-skin-card;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-skin-card-muted;
+  }
+}
+
+@utility link-dashed {
+  @apply underline decoration-dashed underline-offset-4 hover:text-skin-accent;
+}
+
+@utility section-title {
+  @apply text-2xl font-semibold tracking-wide;
+}

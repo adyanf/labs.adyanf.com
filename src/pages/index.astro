@@ -1,0 +1,92 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Hr from "../components/Hr.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import Socials from "../components/Socials.astro";
+import { PROJECTS, SITE } from "../config";
+
+const principles = [
+  {
+    title: "Build small, ship early",
+    body: "Get something real in front of people before polishing it.",
+  },
+  {
+    title: "Solve problems I actually have",
+    body: "Start from my own life, then check whether others feel it too.",
+  },
+  {
+    title: "Learn in public",
+    body: "Write about what worked (and what didn't) on the blog.",
+  },
+];
+---
+
+<Layout>
+  <Header />
+  <main id="main-content">
+    <section id="hero" class="pt-8 pb-6">
+      <h1 class="my-4 text-3xl font-bold sm:my-8 sm:text-5xl">
+        {SITE.title}<span class="text-skin-accent">_</span>
+      </h1>
+      <p class="my-2">
+        Hi there! This is my little lab, a place where I experiment with ideas
+        and turn the promising ones into real products. Some will work, most
+        probably won't, and that's kind of the point 😄.
+      </p>
+      <p class="my-2">
+        By day I'm a software engineer. Here, I'm practising the other side:
+        finding problems worth solving and building something people actually
+        want to use. If you're curious about the journey, I write about it on{" "}
+        <a href={SITE.blog} class="link-dashed">my blog</a>.
+      </p>
+    </section>
+
+    <Hr />
+
+    <section id="principles" class="pt-12 pb-6">
+      <h2 class="section-title">How the lab works</h2>
+      <ol class="mt-6 space-y-5">
+        {
+          principles.map(({ title, body }, i) => (
+            <li class="flex gap-4">
+              <span class="font-semibold text-skin-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <p class="font-medium">{title}</p>
+                <p class="opacity-80">{body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <Hr />
+
+    <section id="building" class="pt-12 pb-6">
+      <h2 class="section-title">Building now</h2>
+      <ul>
+        {PROJECTS.map(project => <ProjectCard project={project} />)}
+      </ul>
+    </section>
+
+    <Hr />
+
+    <section id="contact" class="pt-12 pb-12">
+      <h2 class="section-title">Say hi</h2>
+      <p class="my-4">
+        Got an idea, some feedback, or want to build something together? Drop
+        me an email at{" "}
+        <a href={`mailto:${SITE.email}`} class="link-dashed break-words">
+          {SITE.email}
+        </a>{" "}
+        or find me here:
+      </p>
+      <Socials />
+    </section>
+  </main>
+  <Footer />
+</Layout>

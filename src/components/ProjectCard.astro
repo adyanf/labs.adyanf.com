@@ -1,0 +1,39 @@
+---
+import type { Project } from "../config";
+
+export interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const { name, status, description, href } = project;
+---
+
+<li class="my-6">
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+    {
+      href ? (
+        <a
+          href={href}
+          class="text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 hover:underline"
+        >
+          <h3>{name}</h3>
+        </a>
+      ) : (
+        <h3 class="text-lg font-medium text-skin-accent">{name}</h3>
+      )
+    }
+    <span
+      class="inline-flex items-center gap-1.5 rounded-sm border border-skin-accent/60 px-2 py-0.5 text-xs font-medium tracking-wide uppercase"
+    >
+      <span
+        class:list={[
+          "inline-block h-1.5 w-1.5 rounded-full bg-skin-accent",
+          status === "Building" && "animate-pulse",
+        ]}
+        aria-hidden="true"></span>
+      {status}
+    </span>
+  </div>
+  <p class="mt-2">{description}</p>
+</li>
